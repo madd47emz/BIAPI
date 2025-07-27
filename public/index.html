@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Book Management API</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .endpoint {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-left: 4px solid #007bff;
+            margin-bottom: 10px;
+        }
+        .method {
+            font-weight: bold;
+            color: #28a745;
+            display: inline-block;
+            width: 80px;
+        }
+        .url {
+            color: #007bff;
+        }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <h1>📚 Library Book Management API</h1>
+    <p>Welcome to the Library Book Management API. Below are the available endpoints:</p>
+
+    <h2>👤 Authors</h2>
+    <div class="endpoint">
+        <span class="method">POST</span>
+        <span class="url">/api/authors</span>
+        <p>Create an author (photo is required)</p>
+    </div>
+    <div class="endpoint">
+        <span class="method">GET</span>
+        <span class="url">/api/authors</span>
+        <p>List all authors</p>
+    </div>
+    <div class="endpoint">
+        <span class="method">PUT</span>
+        <span class="url">/api/authors/:id</span>
+        <p>Update author data</p>
+    </div>
+    <div class="endpoint">
+        <span class="method">PUT</span>
+        <span class="url">/api/authors/:id/photo</span>
+        <p>Update author photo</p>
+    </div>
+    <div class="endpoint">
+        <span class="method">DELETE</span>
+        <span class="url">/api/authors/:id</span>
+        <p>Delete an author</p>
+    </div>
+
+    <h2>📚 Books</h2>
+    <div class="endpoint">
+        <span class="method">POST</span>
+        <span class="url">/api/books</span>
+        <p>Create a book</p>
+    </div>
+    <div class="endpoint">
+        <span class="method">GET</span>
+        <span class="url">/api/books</span>
+        <p>List all books (with optional filters: genre & author)</p>
+    </div>
+    <div class="endpoint">
+        <span class="method">PUT</span>
+        <span class="url">/api/books/:id</span>
+        <p>Update a book</p>
+    </div>
+    <div class="endpoint">
+        <span class="method">DELETE</span>
+        <span class="url">/api/books/:id</span>
+        <p>Delete a book</p>
+    </div>
+
+    <h2>🔄 Borrow Records</h2>
+    <div class="endpoint">
+        <span class="method">POST</span>
+        <span class="url">/api/borrow</span>
+        <p>Create a borrow record (only if availableCopies > 0)</p>
+    </div>
+    <div class="endpoint">
+        <span class="method">POST</span>
+        <span class="url">/api/borrow/return/:id</span>
+        <p>Mark a book as returned</p>
+    </div>
+    <div class="endpoint">
+        <span class="method">GET</span>
+        <span class="url">/api/borrow</span>
+        <p>List borrowed books</p>
+    </div>
+
+    <h2>📊 Analytics</h2>
+    <div class="endpoint">
+        <span class="method">GET</span>
+        <span class="url">/api/top-authors</span>
+        <p>Top 3 authors whose books have been borrowed the most</p>
+    </div>
+    <div class="endpoint">
+        <span class="method">GET</span>
+        <span class="url">/api/top-genres</span>
+        <p>List of genres ordered by most borrowed</p>
+    </div>
+
+    <h2>🔐 Authentication</h2>
+    <div class="endpoint">
+        <span class="method">POST</span>
+        <span class="url">/api/auth/signup</span>
+        <p>Register a new user</p>
+    </div>
+    <div class="endpoint">
+        <span class="method">POST</span>
+        <span class="url">/api/auth/login</span>
+        <p>Authenticate & return a JWT token</p>
+    </div>
+    <div class="endpoint">
+        <span class="method">POST</span>
+        <span class="url">/api/auth/forgot-password</span>
+        <p>Send password reset link/code</p>
+    </div>
+    <div class="endpoint">
+        <span class="method">POST</span>
+        <span class="url">/api/auth/reset-password</span>
+        <p>Reset user password</p>
+    </div>
+    <div class="endpoint">
+        <span class="method">POST</span>
+        <span class="url">/api/auth/refresh-token</span>
+        <p>Refresh JWT access token</p>
+    </div>
+
+    <footer>
+        <p>Library Book Management API - &copy; 2023</p>
+    </footer>
+</body>
+</html>

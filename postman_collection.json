@@ -1,0 +1,577 @@
+{
+  "info": {
+    "_postman_id": "e9a4c6b3-8c4d-4c9c-8e1d-1b9c5f5f6f7f",
+    "name": "Library Book Management API",
+    "description": "API collection for Library Book Management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authors",
+      "item": [
+        {
+          "name": "Create Author",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "firstname",
+                  "value": "John",
+                  "type": "text"
+                },
+                {
+                  "key": "lastname",
+                  "value": "Doe",
+                  "type": "text"
+                },
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "src": "/path/to/photo.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/authors",
+              "host": ["{{base_url}}"],
+              "path": ["api", "authors"]
+            },
+            "description": "Create a new author"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Authors",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/authors",
+              "host": ["{{base_url}}"],
+              "path": ["api", "authors"]
+            },
+            "description": "Get list of all authors"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Author",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"firstname\": \"Updated First Name\",\n    \"lastname\": \"Updated Last Name\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/authors/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "authors", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{author_id}}"
+                }
+              ]
+            },
+            "description": "Update an author's information"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Author Photo",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "src": "/path/to/new/photo.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/authors/:id/photo",
+              "host": ["{{base_url}}"],
+              "path": ["api", "authors", ":id", "photo"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{author_id}}"
+                }
+              ]
+            },
+            "description": "Update an author's photo"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Author",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/authors/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "authors", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{author_id}}"
+                }
+              ]
+            },
+            "description": "Delete an author"
+          },
+          "response": []
+        }
+      ],
+      "description": "Author management endpoints"
+    },
+    {
+      "name": "Books",
+      "item": [
+        {
+          "name": "Create Book",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Sample Book\",\n    \"genre\": \"Fiction\",\n    \"author\": \"{{author_id}}\",\n    \"availableCopies\": 5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/books",
+              "host": ["{{base_url}}"],
+              "path": ["api", "books"]
+            },
+            "description": "Create a new book"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Books",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/books",
+              "host": ["{{base_url}}"],
+              "path": ["api", "books"],
+              "query": [
+                {
+                  "key": "genre",
+                  "value": "Fiction",
+                  "disabled": true
+                },
+                {
+                  "key": "author",
+                  "value": "{{author_id}}",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Get list of all books with optional filters"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Book",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Updated Title\",\n    \"genre\": \"Non-Fiction\",\n    \"availableCopies\": 10\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/books/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "books", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{book_id}}"
+                }
+              ]
+            },
+            "description": "Update a book's information"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Book",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/books/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "books", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{book_id}}"
+                }
+              ]
+            },
+            "description": "Delete a book"
+          },
+          "response": []
+        }
+      ],
+      "description": "Book management endpoints"
+    },
+    {
+      "name": "Borrow Records",
+      "item": [
+        {
+          "name": "Create Borrow Record",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"bookId\": \"{{book_id}}\",\n    \"person\": \"John Smith\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/borrow",
+              "host": ["{{base_url}}"],
+              "path": ["api", "borrow"]
+            },
+            "description": "Create a new borrow record"
+          },
+          "response": []
+        },
+        {
+          "name": "Return Book",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/borrow/return/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "borrow", "return", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{borrow_id}}"
+                }
+              ]
+            },
+            "description": "Mark a book as returned"
+          },
+          "response": []
+        },
+        {
+          "name": "List Borrowed Books",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/borrow",
+              "host": ["{{base_url}}"],
+              "path": ["api", "borrow"]
+            },
+            "description": "Get list of currently borrowed books"
+          },
+          "response": []
+        }
+      ],
+      "description": "Borrow record management endpoints"
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Top Authors",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/top-authors",
+              "host": ["{{base_url}}"],
+              "path": ["api", "top-authors"]
+            },
+            "description": "Get top 3 authors whose books have been borrowed the most"
+          },
+          "response": []
+        },
+        {
+          "name": "Top Genres",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/top-genres",
+              "host": ["{{base_url}}"],
+              "path": ["api", "top-genres"]
+            },
+            "description": "Get list of genres ordered by most borrowed"
+          },
+          "response": []
+        }
+      ],
+      "description": "Analytics endpoints"
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"testuser\",\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/signup",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "signup"]
+            },
+            "description": "Register a new user"
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Login and get JWT token"
+          },
+          "response": []
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"test@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/forgot-password",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "forgot-password"]
+            },
+            "description": "Generate password reset token"
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"token\": \"reset-token-here\",\n    \"password\": \"newpassword123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/reset-password",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "reset-password"]
+            },
+            "description": "Reset user password"
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/refresh-token",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "refresh-token"]
+            },
+            "description": "Refresh JWT access token"
+          },
+          "response": []
+        }
+      ],
+      "description": "Authentication endpoints"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "author_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "book_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "borrow_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
